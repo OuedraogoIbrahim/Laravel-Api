@@ -1,0 +1,343 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    list-style: none;
+    text-decoration: none;
+}
+
+body {
+    background-image: linear-gradient(145deg, rgba(232, 87, 237, 0.15) 0%, rgba(109, 137, 69, 0.15) 100%), linear-gradient(75deg, rgb(33, 138, 184), rgb(0, 241, 181));
+    ;
+    color: #fff;
+    margin-bottom: 50px;
+
+}
+
+
+/* Javascript utilise pour ces proprietes */
+
+section {
+    display: none;
+}
+
+/* ****************************** */
+
+.active {
+    display: block;
+}
+
+
+.menu {
+
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+
+button {
+    font-weight: bold;
+    padding: 8px 0;
+    width: 25%;
+    cursor: pointer;
+}
+
+button a {
+    display: block;
+    font-weight: bold;
+    padding: 6px 0;
+    color: #000;
+}
+
+#events-events,
+#stats-stats,
+#ranking-ranking {
+    background-color: yellow;
+}
+
+div .compos {
+    background-color: red;
+}
+
+
+
+img {
+    height: 80px;
+}
+
+/* ***** Statistiqus ***** */
+
+.head {
+    background-image: radial-gradient(circle at center center, transparent 0%, rgb(0, 0, 0) 85%), linear-gradient(78deg, rgba(192, 192, 192, 0.05) 0%, rgba(192, 192, 192, 0.05) 50%, rgba(60, 60, 60, 0.05) 50%, rgba(60, 60, 60, 0.05) 100%), linear-gradient(227deg, rgba(97, 97, 97, 0.05) 0%, rgba(97, 97, 97, 0.05) 50%, rgba(52, 52, 52, 0.05) 50%, rgba(52, 52, 52, 0.05) 100%), linear-gradient(240deg, rgba(98, 98, 98, 0.05) 0%, rgba(98, 98, 98, 0.05) 50%, rgba(249, 249, 249, 0.05) 50%, rgba(249, 249, 249, 0.05) 100%), linear-gradient(187deg, rgba(1, 1, 1, 0.05) 0%, rgba(1, 1, 1, 0.05) 50%, rgba(202, 202, 202, 0.05) 50%, rgba(202, 202, 202, 0.05) 100%), linear-gradient(101deg, rgba(61, 61, 61, 0.05) 0%, rgba(61, 61, 61, 0.05) 50%, rgba(254, 254, 254, 0.05) 50%, rgba(254, 254, 254, 0.05) 100%), linear-gradient(176deg, rgba(237, 237, 237, 0.05) 0%, rgba(237, 237, 237, 0.05) 50%, rgba(147, 147, 147, 0.05) 50%, rgba(147, 147, 147, 0.05) 100%), linear-gradient(304deg, rgba(183, 183, 183, 0.05) 0%, rgba(183, 183, 183, 0.05) 50%, rgba(57, 57, 57, 0.05) 50%, rgba(57, 57, 57, 0.05) 100%), radial-gradient(circle at center center, hsl(351, 4%, 12%), hsl(351, 4%, 12%));
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: red;
+}
+
+.stats-scroll {
+    height: 400px;
+    overflow: auto;
+}
+
+.domicile {
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.exterieur {
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.time-score {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.time-score h3 {
+    font-weight: bold;
+    font-size: 40px;
+}
+
+.statistiques {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.stats-details {
+    padding: 10px 0;
+    display: flex;
+    justify-content: space-around;
+    background-color: #00BFFF;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+
+/* Ranking  */
+table {
+    color: #000;
+    font-weight: bold;
+    border-collapse: collapse;
+    margin: auto;
+    width: 70%;
+    border: 2px solid whitesmoke;
+}
+
+thead {
+    background-color: rgb(62, 88, 202);
+    color: #fff;
+}
+
+
+td {
+    border-bottom: 2px solid black;
+}
+
+th,
+td {
+    padding: 10px;
+    text-align: center;
+}
+
+.team-active {
+    background-color: #fff999;
+    font-style: oblique;
+    font-weight: bold;
+}
+
+/* Evenements ***************************/
+
+.event-scroll {
+    height: 400px;
+    overflow: auto;
+}
+
+.event-detail {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    margin: auto;
+    border: 2px solid black;
+}
+
+.event-detail h2 {
+    font-weight: bold;
+    color: #000;
+}
+
+/* 
+.infos-match {
+    display: flex;
+    flex-direction: column;
+    border: 2px solid yellow;
+    width: 100%;
+    gap: 20px;
+}
+ */
+
+.home-details {
+    padding: 10px 0;
+    width: 30%;
+    border: 2px solid red;
+    border-radius: 50%;
+    transform: translateX(-100px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: aqua;
+}
+
+.away-details {
+    padding: 10px 0;
+    width: 30%;
+    border: 2px solid blue;
+    border-radius: 50%;
+    transform: translateX(100px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: aqua;
+}
+
+.time-time {
+    color: red;
+    font-weight: bold;
+}
+
+.type-type {
+    color: green;
+    font-weight: bold;
+}
+
+h5 {
+    color: #000;
+    font-weight: bold;
+}
+
+
+.active-button,
+.no-active-button {
+    cursor: pointer;
+    padding: 5px 0;
+    width: 100px;
+    text-align: center;
+    margin: auto;
+    background-color: grey;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+
+.face-to-face {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    border: 2px solid yellow;
+    margin: 20px auto 0;
+}
+
+.face-to-face h2 {
+    font-weight: bold;
+    color: #000;
+}
+
+.infos-confrontation {
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+    border-bottom: 2px solid #fff999;
+}
+
+.infos-confrontation .home-team,
+.infos-confrontation .away-team {
+    width: 20%;
+    text-align: center;
+    font-weight: bold;
+}
+
+
+
+
+
+
+
+@media screen and (min-width:600px) {
+    body {
+        background-image: repeating-linear-gradient(135deg, rgba(0, 0, 0, 0.04) 0px, rgba(0, 0, 0, 0.04) 2px, transparent 2px, transparent 4px), linear-gradient(135deg, rgb(165, 230, 235), rgb(29, 32, 232));
+    }
+
+    .head {
+        background-image: repeating-linear-gradient(45deg, hsla(207, 0%, 63%, 0.05) 0px, hsla(207, 0%, 63%, 0.05) 1px, transparent 1px, transparent 11px, hsla(207, 0%, 63%, 0.05) 11px, hsla(207, 0%, 63%, 0.05) 12px, transparent 12px, transparent 32px), repeating-linear-gradient(0deg, hsla(207, 0%, 63%, 0.05) 0px, hsla(207, 0%, 63%, 0.05) 1px, transparent 1px, transparent 11px, hsla(207, 0%, 63%, 0.05) 11px, hsla(207, 0%, 63%, 0.05) 12px, transparent 12px, transparent 32px), repeating-linear-gradient(135deg, hsla(207, 0%, 63%, 0.05) 0px, hsla(207, 0%, 63%, 0.05) 1px, transparent 1px, transparent 11px, hsla(207, 0%, 63%, 0.05) 11px, hsla(207, 0%, 63%, 0.05) 12px, transparent 12px, transparent 32px), repeating-linear-gradient(90deg, hsla(207, 0%, 63%, 0.05) 0px, hsla(207, 0%, 63%, 0.05) 1px, transparent 1px, transparent 11px, hsla(207, 0%, 63%, 0.05) 11px, hsla(207, 0%, 63%, 0.05) 12px, transparent 12px, transparent 32px), linear-gradient(90deg, rgb(17, 17, 17), rgb(66, 66, 66));
+        width: 80%;
+        margin: auto;
+    }
+
+    .statistiques,
+    .options {
+        width: 80%;
+        margin: auto;
+    }
+
+    .event-detail {
+        width: 80%;
+    }
+
+    .face-to-face {
+        width: 80%;
+    }
+
+}
+
+@media screen and (min-width:900px) {
+    body {
+        background-image: repeating-linear-gradient(45deg, rgba(0, 0, 0, 0.05) 0px, rgba(0, 0, 0, 0.05) 2px, transparent 2px, transparent 4px), linear-gradient(0deg, rgb(70, 143, 234), rgb(187, 235, 205));
+    }
+
+
+    .head {
+        background-image: linear-gradient(326deg, rgba(236, 236, 236, 0.04) 0%, rgba(236, 236, 236, 0.04) 6%, rgba(157, 157, 157, 0.04) 6%, rgba(157, 157, 157, 0.04) 29%, rgba(77, 77, 77, 0.04) 29%, rgba(77, 77, 77, 0.04) 100%), linear-gradient(164deg, rgba(236, 236, 236, 0.04) 0%, rgba(236, 236, 236, 0.04) 36%, rgba(157, 157, 157, 0.04) 36%, rgba(157, 157, 157, 0.04) 61%, rgba(77, 77, 77, 0.04) 61%, rgba(77, 77, 77, 0.04) 100%), linear-gradient(336deg, rgba(236, 236, 236, 0.04) 0%, rgba(236, 236, 236, 0.04) 64%, rgba(157, 157, 157, 0.04) 64%, rgba(157, 157, 157, 0.04) 69%, rgba(77, 77, 77, 0.04) 69%, rgba(77, 77, 77, 0.04) 100%), linear-gradient(90deg, rgb(0, 0, 0), rgb(0, 0, 0));
+        width: 70%;
+        margin: auto;
+    }
+
+    /* Statistiques */
+    .statistiques,
+    .options {
+        width: 70%;
+        margin: auto;
+    }
+
+    /* Compositions */
+    .compos {
+        gap: 26px;
+
+    }
+
+    .home,
+    .away {
+        width: 40%;
+    }
+
+    .event-detail {
+        width: 70%;
+    }
+
+    .face-to-face {
+        width: 70%;
+    }
+}
