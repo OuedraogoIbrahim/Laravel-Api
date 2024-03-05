@@ -25,7 +25,7 @@ class TeamController extends Controller
             abort('403', 'Aucune information disponible pour cette equipe');
         }
 
-        $api_key = 'b9c9431bb75650273c8c04b429b2c64eae4f6f1098105bb577c5c44a5e25400e';
+        $api_key = env('API_KEY');
 
 
         $competition = $team[0]->competition;

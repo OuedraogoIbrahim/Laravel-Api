@@ -117,10 +117,19 @@ img {
 .stats-details {
     padding: 10px 0;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     background-color: #00BFFF;
     font-weight: bold;
     font-size: 18px;
+}
+
+.stats-details .stats-home {
+    transform: translateX(14px);
+}
+
+.stats-details .stats-away {
+    transform: translateX(-14px);
+
 }
 
 
@@ -197,6 +206,7 @@ td {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    align-items: center;
     background-color: aqua;
 }
 
@@ -210,8 +220,11 @@ td {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    align-items: center;
     background-color: aqua;
 }
+
+
 
 .time-time {
     color: red;
@@ -269,10 +282,6 @@ h5 {
     text-align: center;
     font-weight: bold;
 }
-
-
-
-
 
 
 

@@ -121,8 +121,8 @@
                                 @if ($event['type'] == 'But')
                                     <span class="time-time">{{ $event['time'] . ' minutes' }}</span>
                                     <span class="type-type">{{ $event['type'] }}</span>
-                                    <h5> Buteur : {{ $event['home_scorer'] }}</h5>
-                                    <h5> Passeur : {{ $event['home_assist'] != '' ? $event['home_assist'] : 'Neant' }}
+                                    <h5> Bu : {{ $event['home_scorer'] }}</h5>
+                                    <h5> Pa : {{ $event['home_assist'] != '' ? $event['home_assist'] : 'Neant' }}
                                     </h5>
                                 @endif
 
@@ -145,8 +145,8 @@
                                 @if ($event['type'] == 'But')
                                     <span class="time-time">{{ $event['time'] . ' minutes' }}</span>
                                     <span class="type-type">{{ $event['type'] }}</span>
-                                    <h5> Buteur : {{ $event['away_scorer'] }}</h5>
-                                    <h5> Passeur : {{ $event['away_assist'] != '' ? $event['away_assist'] : 'Neant' }}
+                                    <h5> Bu : {{ $event['away_scorer'] }}</h5>
+                                    <h5> Pa : {{ $event['away_assist'] != '' ? $event['away_assist'] : 'Neant' }}
                                     </h5>
                                 @endif
 

@@ -6,13 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Accueil</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="{{ asset('css/home/home.css') }}">
 </head>
 
 <body>
-
-
-
 
     <div class="logo">
         <h4 class="btn">
@@ -30,21 +28,31 @@
 
     <div class="form">
         <form action="">
-            <input type="search" name="equipe" placeholder="Nom de l'equipe recherché" required>
+            <input type="search" id="search-team-input" name="team" placeholder="Nom de l'equipe recherché" required
+                autocomplete="off">
             <button>Rechercher</button>
+            <ul id="suggestions-team-list"></ul>
         </form>
 
         <form action="">
-            <input type="search" name="competition" placeholder="Nom de la competition recherché" required>
+            <input type="search" id="search-input" name="competition" placeholder="Nom de la competition recherché"
+                required autocomplete="off">
+            <ul id="suggestions-list"></ul>
             <button>Rechercher</button>
         </form>
     </div>
     <div class="competitions"></div>
 
+    <div class="calendar">
+        <h4> Vous recherchez une date precise?</h4>
+        <form action="" method="GET">
+            <input type="date" name="date" id="date" value="{{ $date }}">
+        </form>
+    </div>
 
     <div class="date">
         @for ($i = 3; $i >= 1; $i--)
-            <a class="{{ $date ==now()->subDays($i)->toDateString()? 'active': null }}"
+            <a class="{{ $date == now()->subDays($i)->toDateString() ? 'active' : null }}"
                 href="{{ route('specifity.date', [
                     'date' => now()->subDays($i)->toDateString(),
                 ]) }}">
@@ -54,7 +62,7 @@
             href="{{ route('home') }}">{{ 'Aujourd\'hui' }} </a>
 
         @for ($i = 1; $i <= 3; $i++)
-            <a class="{{ $date ==now()->addDays($i)->toDateString()? 'active': null }}"
+            <a class="{{ $date == now()->addDays($i)->toDateString() ? 'active' : null }}"
                 href="{{ route('specifity.date', [
                     'date' => now()->addDays($i)->toDateString(),
                 ]) }}">
@@ -128,6 +136,103 @@
             </div>
         @endforeach
     </div>
+
+    <script>
+        //****************************************************************
+        $(document).ready(function() {
+            $('#search-input').on('input', function() {
+                // Nettoyez les espaces blancs en début et fin de la chaîne
+                let query = $(this).val().trim();
+
+                if (query.length <= 1) {
+                    $('.suggestions').hide();
+                    $('#suggestions-list').empty();
+                } else if (query.length >= 2) {
+                    $.ajax({
+                        url: 'search/suggestions',
+                        method: 'GET',
+                        data: {
+                            query: query
+                        },
+                        success: function(data) {
+                            // Supprimez les suggestions précédentes
+                            $('#suggestions-list').empty();
+
+                            // Ajoutez les nouvelles suggestions à la liste (limité à 5 suggestions)
+                            for (let i = 0; i < Math.min(5, data.length); i++) {
+                                $('#suggestions-list').append(
+                                    '<li class="suggestion" data-suggestion="' + data[i] +
+                                    '"> <a href="competition?competition=' +
+                                    encodeURIComponent(data[i]) + '">' + data[i] +
+                                    '</a></li>'
+
+                                );
+                            }
+
+                            $('.suggestions').show();
+                        },
+                        error: function(error) {
+                            console.error('Erreur lors de la récupération des suggestions',
+                                error);
+                        }
+                    });
+                } else {
+                    // La chaîne de recherche est vide, nettoyez la liste des suggestions
+                    $('.suggestions').hide();
+                    $('#suggestions-list').empty();
+                }
+            });
+        });
+
+        //************************************************************************
+
+        $(document).ready(function() {
+            $('#search-team-input').on('input', function() {
+                // Nettoyez les espaces blancs en début et fin de la chaîne
+                let query = $(this).val().trim();
+
+                if (query.length <= 1) {
+                    $('.suggestions').hide();
+                    $('#suggestions-team-list').empty();
+                } else if (query.length >= 2) {
+                    $.ajax({
+                        url: 'search/suggestions/teams',
+                        method: 'GET',
+                        data: {
+                            query: query
+                        },
+                        success: function(data) {
+                            // Supprimez les suggestions précédentes
+                            $('#suggestions-team-list').empty();
+
+                            // Ajoutez les nouvelles suggestions à la liste (limité à 5 suggestions)
+                            for (let i = 0; i < Math.min(5, data.length); i++) {
+                                $('#suggestions-team-list').append(
+                                    '<li class="suggestion" data-suggestion="' + data[i] +
+                                    '"><a href="team?team=' + encodeURIComponent(data[i]) +
+                                    '">' + data[i] + '</a></li>'
+
+
+                                );
+                            }
+
+                            $('.suggestions').show();
+                        },
+                        error: function(error) {
+                            console.error(
+                                'Erreur lors de la récupération des suggestions',
+                                error);
+                        }
+                    });
+                } else {
+                    // La chaîne de recherche est vide, nettoyez la liste des suggestions
+                    $('.suggestions').hide();
+                    $('#suggestions-team-list').empty();
+                }
+            });
+
+        });
+    </script>
 </body>
 
 </html>

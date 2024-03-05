@@ -6,15 +6,16 @@ use App\Http\Controllers\Controller;
 use App\Http\Integrations\Football\MatchesPlayedTodayConnector;
 use App\Http\Integrations\Football\Requests\MatchesPlayedTodayRequest;
 use App\Models\League;
+use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
     public function index()
     {
 
-        $api_key = 'b9c9431bb75650273c8c04b429b2c64eae4f6f1098105bb577c5c44a5e25400e';
+        $api_key = env('API_KEY');
 
         $debut = 1;
         $fin = 1;
@@ -42,13 +43,18 @@ class HomeController extends Controller
             return abort('403', 'Aucun Match pour ce jour');
         }
 
-        return view('home.home', ['leagues' => $leagues_names]);
+        if (Auth::check()) {
+            $user = User::query()->with('favorites')->has('favorites')->where('id', Auth::id())->get();
+            $favorites = $user[0]->favorites;
+        }
+
+        return view('home.home', ['leagues' => $leagues_names] + (isset($favorites) ? ['favorites' => $favorites] : []));
     }
 
     public function show($date, Request $request)
     {
 
-        $api_key = '3978dd186dc788e39e07860b92ec988e239b45ff45f8883ebedfd78c0734884b';
+        $api_key = env('API_KEY');
 
         $debut = $date;
         $fin = $date;
@@ -76,7 +82,6 @@ class HomeController extends Controller
             return abort('403', 'Aucun Match pour ce jour');
         }
 
-        // return view('home.show');
         return view('home.show', ['leagues' => $leagues_names, 'date' => $debut]);
     }
 }

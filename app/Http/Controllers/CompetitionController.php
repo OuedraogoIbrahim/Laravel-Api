@@ -26,7 +26,7 @@ class CompetitionController extends Controller
             abort('403', 'Aucune correspondance trouvé');
         }
 
-        $api_key = 'b9c9431bb75650273c8c04b429b2c64eae4f6f1098105bb577c5c44a5e25400e';
+        $api_key = env('API_KEY');
 
         $connector = new AllTeamsOfCompetitionConnector();
         $response = $connector->send(new AllTeamsOfCompetitionRequest($api_key, $competition->number));
@@ -35,7 +35,6 @@ class CompetitionController extends Controller
             abort('403', 'Une erreur est survenue . Veuillez réessayer');
         }
         $teams_found = $response['result'];
-
 
         // Recuperation de tous les TopScorers
         $connector = new TopScorersConnector();
