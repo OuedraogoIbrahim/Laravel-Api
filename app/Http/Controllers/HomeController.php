@@ -45,7 +45,9 @@ class HomeController extends Controller
 
         if (Auth::check()) {
             $user = User::query()->with('favorites')->has('favorites')->where('id', Auth::id())->get();
-            $favorites = $user[0]->favorites;
+            if ($user->isNotEmpty()) {
+                $favorites = $user[0]->favorites;
+            }
         }
 
         return view('home.home', ['leagues' => $leagues_names] + (isset($favorites) ? ['favorites' => $favorites] : []));

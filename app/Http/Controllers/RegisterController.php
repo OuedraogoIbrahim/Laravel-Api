@@ -23,7 +23,7 @@ class RegisterController extends Controller
     {
         $data = $request->validate(
             [
-                'pseudo' => ['required', 'min:3', 'max:16'],
+                'pseudo' => ['required', 'min:3', 'max:16', 'unique:users,pseudo'],
                 'password' => ['required', 'string', 'min:8', 'max:16', 'confirmed'],
             ]
         );
