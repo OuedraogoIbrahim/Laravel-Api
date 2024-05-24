@@ -166,7 +166,8 @@ input:focus {
 .suggestion {
     text-align: center;
     padding: 6px 0;
-    background-color: gray
+    background-color: gray;
+    border-radius: 6px;
 }
 
 .suggestion a {
@@ -187,23 +188,23 @@ input:focus {
     overflow: hidden;
     transition: 1s;
     margin: 10px auto 0;
-    background: #03f40f;
+    /* background: #03f40f; */
     color: #000;
     border-radius: 5px;
     cursor: pointer;
-    box-shadow: 0 0 5px #03f40f,
+    /* box-shadow: 0 0 5px #03f40f,
         0 0 25px #03f40f,
         0 0 2px #03f40f,
-        0 0 1px #03f40f;
+        0 0 1px #03f40f; */
 }
 
 .form button:hover {
     color: #000;
-    background-color: #fff999;
-    box-shadow: 0 0 5px #fff999,
-        0 0 25px #fff999,
-        0 0 2px #fff999,
-        0 0 1px #fff999;
+    background-color: #03f40f;
+    box-shadow: 0 0 5px #03f40f,
+        0 0 25px #03f40f,
+        0 0 2px #03f40f,
+        0 0 1px #03f40f;
 }
 
 .calendar {
@@ -434,10 +435,28 @@ strong {
         0 0 100px #03f40f;
 }
 
+.live a {
+    display: inline-block;
+    text-align: center;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 20px;
+    color: white;
+    font-weight: bold;
+}
+
+.live a:hover {
+    background-color: grey;
+    color: black;
+}
 
 h1 {
-    color: blue;
+    color: white;
     font-style: oblique;
+}
+
+h5 {
+    color: Grey;
 }
 
 .container {
@@ -447,7 +466,6 @@ h1 {
 }
 
 .head {
-    background-color: rgba(0, 128, 0, 0.788);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -598,7 +616,7 @@ img {
 
 /* ************************************ */
 .fixed {
-    background-color: yellowgreen;
+    /* background-color: yellowgreen; */
     position: fixed;
     width: 100%;
     display: flex;
@@ -609,14 +627,15 @@ img {
 
 .fixed span a {
     padding: 0 10px;
-    font-size: 40px;
+    font-size: 30px;
     font-weight: bold;
     font-style: italic;
-    color: #000;
+    color: white;
 }
 
 .fixed span a:hover {
-    background-color: #000;
+    background-color: grey;
+    border-radius: 10px;
     color: #fff;
 }
 
@@ -632,17 +651,18 @@ img {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: green;
-    filter: contrast(9);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 20px;
-    height: 400px;
-    width: 80%;
     text-align: center;
     border: 2px solid black;
+
+    max-width: 400px;
+    background-color: #F8FBFE;
+    border-radius: 8px;
+    z-index: 1;
 
 }
 
@@ -665,10 +685,10 @@ img {
 }
 
 .guest-active a:hover {
-    background-color: #000;
+    background-color: grey;
+    border-radius: 10px;
     color: #FFFFFF;
 }
-
 
 @media screen and (max-width : 600px) {
 
@@ -681,5 +701,11 @@ img {
         left: 50%;
         transform: translate(-50%, 10px);
 
+    }
+}
+
+@media screen and (max-width : 590px) {
+    .logo {
+        display: none;
     }
 }

@@ -56,9 +56,4 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Favorite::class, 'Favorite_User', 'user_id', 'favorite_id');
     }
-
-    public function groups(): BelongsToMany
-    {
-        return $this->belongsToMany(Group::class);
-    }
 }

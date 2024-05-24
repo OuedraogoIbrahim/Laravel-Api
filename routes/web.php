@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\CompetitionController;
 use App\Http\Controllers\compositionsController;
 use App\Http\Controllers\DashboardController;
@@ -10,6 +11,7 @@ use App\Http\Controllers\LiveController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\MatchDetailsController;
+use App\Http\Controllers\MatchLiveController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SuggestionController;
 use App\Http\Controllers\TeamController;
@@ -32,8 +34,12 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 // Matchs a une date precise
 Route::get('/matchs/{date}', [HomeController::class, 'show'])->name('specifity.date');
 
+//Matchs en direct
+Route::get('/match/live', [MatchLiveController::class, 'live'])->name('live.match');
+
 //Detail d'un match
 Route::get('/match/{home}-vs-{away}/{date}/{key}', [MatchDetailsController::class, 'show'])->name('match.details');
+Route::post('/match/{home}-vs-{away}/{date}/{key}', [CommentController::class, 'addComment'])->name('add.comment');
 
 //Composition des 2 equipes
 Route::get('/match/composition/{home}/{away}/{date}/{key}', [CompositionsController::class, 'composition'])->name('match.composition');
@@ -68,16 +74,3 @@ Route::delete('/favorite/{match_key}', [FavoriteController::class, 'delete_favor
 
 // controller utilisé pour recuperer les matchs en direct 
 Route::get('live', [LiveController::class, 'index']);
-
-
-// Dashboard
-
-Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
-
-
-//groups
-Route::get('group/create', [GroupController::class, 'create_form'])->name('group.create');
-Route::post('group/create', [GroupController::class, 'create']);
-
-Route::get('group/{name}/{id}', [GroupController::class, 'msgGroup'])->name('msgGroup');
-Route::post('group/{name}/{id}', [GroupController::class, 'write_message']);

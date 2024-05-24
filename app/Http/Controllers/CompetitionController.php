@@ -18,12 +18,12 @@ class CompetitionController extends Controller
     {
 
         if (!isset($request->competition)) {
-            abort('403', 'Url incomplete. Absence du nom de la competition');
+            return 'Url incomplete. Absence du nom de la competition';
         }
 
         $competition = Competition::query()->where('name', $request->competition)->first();
         if (!$competition) {
-            abort('403', 'Aucune correspondance trouvé');
+            return 'Aucune correspondance trouvé';
         }
 
         $api_key = env('API_KEY');
@@ -32,7 +32,7 @@ class CompetitionController extends Controller
         $response = $connector->send(new AllTeamsOfCompetitionRequest($api_key, $competition->number));
         $response = $response->json();
         if (!isset($response['result'])) {
-            abort('403', 'Une erreur est survenue . Veuillez réessayer');
+            return 'Une erreur est survenue . Veuillez réessayer';
         }
         $teams_found = $response['result'];
 
@@ -41,7 +41,7 @@ class CompetitionController extends Controller
         $response = $connector->send(new TopScorersRequest($api_key, $competition->number));
         $response = $response->json();
         if (!isset($response['result'])) {
-            abort('403', 'Une erreur est survenue . Veuillez réessayer');
+            return 'Une erreur est survenue . Veuillez réessayer';
         }
         $all_scorers = collect($response['result']);
         $all_scorers = $all_scorers->sortBy('player_place');

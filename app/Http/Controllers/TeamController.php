@@ -8,6 +8,8 @@ use App\Http\Integrations\Football\Requests\RankingRequest;
 use App\Http\Integrations\Football\Requests\TeamRequest;
 use App\Http\Integrations\Football\TeamConnector;
 use App\Models\Team;
+use App\Models\User;
+use Barryvdh\Debugbar\DataCollector\LivewireCollector;
 use Illuminate\Http\Request;
 
 class TeamController extends Controller
@@ -15,14 +17,13 @@ class TeamController extends Controller
     public function team(Request $request)
     {
 
-
         if (!isset($request->team)) {
-            abort('403', 'URL incomplete. Nom de l\'equipe manquant');
+            return 'URL incomplete. Nom de l\'equipe manquant';
         }
 
         $team = Team::query()->where('name', $request->team)->get();
         if ($team->isEmpty()) {
-            abort('403', 'Aucune information disponible pour cette equipe');
+            return 'Nom d\'equipe invalide';
         }
 
         $api_key = env('API_KEY');
@@ -42,7 +43,7 @@ class TeamController extends Controller
         $response = $connector->send(new TeamRequest($api_key, $request->team));
         $response = $response->json();
         if (!isset($response['result'])) {
-            abort('403', 'Aucune équipe trouvé');
+            return 'Aucune équipe trouvé';
         }
         $team_infos = $response['result'][0];
 

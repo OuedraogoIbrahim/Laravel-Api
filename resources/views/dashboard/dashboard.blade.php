@@ -15,13 +15,11 @@
 
         <ul class="navbar">
 
-            {{-- <div class="active">fermer</div> --}}
-
             <li class="profil">
                 <h3>{{ $user->pseudo }}</h3>
                 <div class="profil-details">
                     <ul>
-                        <li class="nav-item"> <a href="">Mon profil </a></li>
+                        {{-- <li class="nav-item"> <a href="">Mon profil </a></li> --}}
                         <li class="nav-item"> <a href="{{ route('group.create') }}">Creer un groupe </a></li>
                         <li class="nav-item"> <a href="{{ route('logout') }}"> Deconnexion</a></li>
                     </ul>
@@ -48,6 +46,11 @@
             <li class="favorites">
                 <h3>Mes favoris</h3>
                 <a href="{{ route('favorite') }}">Voir mes favoris</a>
+            </li>
+
+            <li class="groups">
+                <h4>Voir tous les groupes</h3>
+                    <a href="{{ route('view.groups') }}">cliquez ici</a>
             </li>
 
         </ul>

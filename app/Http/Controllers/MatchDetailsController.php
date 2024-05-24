@@ -9,6 +9,7 @@ use App\Http\Integrations\Football\Requests\DirectConfrontationRequest;
 use App\Http\Integrations\Football\Requests\RankingRequest;
 use App\Http\Integrations\Football\Requests\SpecificMatchRequest;
 use App\Http\Integrations\Football\SpecificMatchConnector;
+use App\Models\Comment;
 use Illuminate\Http\Request;
 
 class MatchDetailsController extends Controller
@@ -35,6 +36,7 @@ class MatchDetailsController extends Controller
         /* Voici sa structure
              $events = 
              [
+
                 [ les infos sur le 1er remplacement]
                 [ les infos sur le 2eme remplacement]...
 
@@ -47,7 +49,6 @@ class MatchDetailsController extends Controller
                 [ les infos sur le 1ere intervention de la var]
                 [ les infos sur le 2eme intervention de la var]...
                 
-
              ]
             
             */
@@ -216,7 +217,6 @@ class MatchDetailsController extends Controller
             $statistiques_during_match = [];
         }
 
-
         // Recuperation du classement
         $connector = new RanKingConnector();
         $response = $connector->send(new RankingRequest($api_key, $match['league_key']));
@@ -233,6 +233,9 @@ class MatchDetailsController extends Controller
             $face_to_face = [];
         }
 
-        return view('match.match', ['match_key' => $key, 'match_infos' => $match, 'events' => $events, 'statistiques' => $statistiques, 'ranking' => $ranking, 'stats_during_match' => $statistiques_during_match, 'face_to_face' => $face_to_face, 'request' => $request]);
+        //Recuperation des commentaires
+        $comments = Comment::query()->where('key_match', $key)->orderByDesc('id')->get();
+
+        return view('match.match', ['match_key' => $key, 'match_infos' => $match, 'events' => $events, 'statistiques' => $statistiques, 'ranking' => $ranking, 'stats_during_match' => $statistiques_during_match, 'face_to_face' => $face_to_face, 'request' => $request, 'comments' => $comments]);
     }
 }

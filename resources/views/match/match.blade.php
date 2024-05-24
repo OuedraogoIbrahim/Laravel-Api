@@ -249,6 +249,38 @@
         </table>
     </section>
 
+    <section class="comments">
+        <h1 class="cm-space">Espace commentaires</h1>
+        <div class="my-comments">
+            @forelse ($comments as $c)
+                <div class="comment">
+                    {{ $c->message }}
+
+                    <span>{{ $c->sender }} {{ $c->created_at }}</span>
+                </div>
+            @empty
+                <h2>Soyez le premier à laisser un commentaire</h2>
+            @endforelse
+
+        </div>
+        @auth
+            <form action="" method="POST" class="send-comment">
+                @csrf
+                <textarea name="message">Ecrivez votre commentaire par ici</textarea>
+                <input type="submit" value="Commenter">
+            </form>
+        @endauth
+        @guest
+            <ul class="no-connect">
+                <li style="text-align: center;font-style:italic;font-size:20px">Se connecter/S'inscrire pour pouvoir
+                    commenter</li>
+                <li><a href="{{ route('register') }}">S'inscrire</a></li>
+                <li><a href="{{ route('login') }}">Se connecter</a></li>
+            </ul>
+        @endguest
+
+
+    </section>
 
     <div class="menu">
 
@@ -276,6 +308,8 @@
         <button id="ranking" onclick="afficher('ranking' ,event)">
             Classement
         </button>
+
+        <button id="comments" onclick="afficher('comments' , event)">Commentaires</button>
 
     </div>
 

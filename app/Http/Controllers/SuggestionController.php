@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\Competition;
 use App\Models\Team;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class SuggestionController extends Controller
